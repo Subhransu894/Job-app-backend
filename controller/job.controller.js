@@ -4,12 +4,13 @@ const Job = require("../models/job.models")
 exports.createJob = async(req,res)=>{
     try {
         const{title,companyName,location,salary,jobType,description,qualifications}=req.body;
-        if(!title || !companyName || !location || !salary || !jobType || !description || !qualifications){
+        if(!title || !companyName || !location || salary===undefined || salary===null || !jobType || !description || !qualifications){
             return res.status(400).json({message:"All fields are required"})
         }
         const job = await Job.create({title,companyName,location,salary,jobType,description,qualifications})
         res.status(201).json(job)
     } catch (error) {
+        console.error("Create Job Error",error.message)
         res.status(500).json({message:"server error",error:error.message})
     }
 }
