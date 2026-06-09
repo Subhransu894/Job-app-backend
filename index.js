@@ -2,25 +2,15 @@ const express = require("express")
 const app = express()
 require("dotenv").config()
 const cors = require("cors")
-const allowedOrigin = [
-    "http://localhost:5173",
-    "https://job-app-backend-alpha.vercel.app"
-]
-const corOptions = {
-  origin: function (origin, callback) {
-    if (!origin || allowedOrigins.includes(origin)) {
-      callback(null, true);
-    } else {
-      callback(new Error("Not allowed by CORS"));
-    }
-  },
-  credentials: true
-};
 
 const {initiallizeDatabase} = require("./db/db.connect")
 
+app.use(cors({
+  origin: "http://localhost:5173",
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  credentials: true
+}));
 app.use(express.json())
-app.use(cors(corOptions))
 
 initiallizeDatabase()
 
