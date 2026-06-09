@@ -6,7 +6,7 @@ const cors = require("cors")
 const {initiallizeDatabase} = require("./db/db.connect")
 
 app.use(cors({
-  origin: "http://localhost:5173",
+  origin:["http://localhost:5173","https://job-app-frontend-rh9j.vercel.app"],
   methods: ["GET", "POST", "PUT", "DELETE"],
   credentials: true
 }));
