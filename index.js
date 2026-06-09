@@ -23,6 +23,10 @@ app.get("/",(req,res)=>{
 const jobRoutes = require("./routes/job.routes")
 app.use("/jobs",jobRoutes)
 
+//auth router
+const authRoutes = require("./routes/auth.routes")
+app.use("/auth",authRoutes)
+
 const PORT = 3000;
 
 app.listen(PORT,()=>{
